@@ -16,13 +16,17 @@ export const counterSlice = createSlice({
       // Directly mutating the state is safe here because Redux Toolkit uses Immer internally
       state.value += 1
     },
+     reset: (state) => {
+      // Directly mutating the state is safe here because Redux Toolkit uses Immer internally
+      state.value = 0
+    },
     // Reducer to decrement the counter
     decrement: (state) => {
       state.value -= 1
     },
     // Reducer to increment the counter by a specific value (passed as payload)
     incrementByAmount: (state, action) => {
-      state.value += action.payload
+      state.value += Number(action.payload)
     },
   },
 })
@@ -31,7 +35,7 @@ export const counterSlice = createSlice({
 // These functions will be used to dispatch actions
 // increment, decrement, incrementByAmount = these are called actions
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount,reset } = counterSlice.actions
 
 // Export the reducer to be included in the Redux store
 export default counterSlice.reducer
